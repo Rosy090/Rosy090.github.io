@@ -1,5 +1,16 @@
-body{
+body {
     margin: 0;
     background: rgb(200, 155, 255);
     text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.input-group {
+    margin-bottom: 10px;
 }

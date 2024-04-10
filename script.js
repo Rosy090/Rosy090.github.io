@@ -1,25 +1,21 @@
 document.addEventListener("DOMContentLoaded", function() {
     const inputsContainer = document.getElementById("inputsContainer");
-    const leftColumnSumElement = document.getElementById("leftColumnSum");
-    const rightColumnSumElement = document.getElementById("rightColumnSum");
-    let leftColumnSum = 0;
-    let rightColumnSum = 0;
+    const expectedGradeElement = document.getElementById("expectedGrade");
+    let expectedGrade = 0;
 
-    function calculateSums() {
-        leftColumnSum = 0;
-        rightColumnSum = 0;
+    function calculateExpectedGrade() {
+        expectedGrade = 0;
 
         const inputGroups = document.querySelectorAll(".input-group");
         inputGroups.forEach(inputGroup => {
             const numberInputs = inputGroup.querySelectorAll(".numberInput");
             const leftNumber = parseInt(numberInputs[0].value) || 0;
             const rightNumber = parseInt(numberInputs[1].value) || 0;
-            leftColumnSum += leftNumber;
-            rightColumnSum += rightNumber;
+            const product = leftNumber * rightNumber;
+            expectedGrade += product;
         });
 
-        leftColumnSumElement.textContent = leftColumnSum;
-        rightColumnSumElement.textContent = rightColumnSum;
+        expectedGradeElement.textContent = expectedGrade;
     }
 
     function createInputGroup() {
@@ -29,12 +25,12 @@ document.addEventListener("DOMContentLoaded", function() {
         const newInput1 = document.createElement("input");
         newInput1.type = "number";
         newInput1.classList.add("numberInput");
-        newInput1.addEventListener("input", calculateSums);
+        newInput1.addEventListener("input", calculateExpectedGrade);
 
         const newInput2 = document.createElement("input");
         newInput2.type = "number";
         newInput2.classList.add("numberInput");
-        newInput2.addEventListener("input", calculateSums);
+        newInput2.addEventListener("input", calculateExpectedGrade);
 
         const newAddButton = document.createElement("button");
         newAddButton.textContent = "Add";
@@ -57,9 +53,6 @@ document.addEventListener("DOMContentLoaded", function() {
         };
     }
 
-    // Create the initial input group
-    const firstButtons = createInputGroup();
-
     // Event delegation to handle dynamically added buttons
     inputsContainer.addEventListener("click", function(event) {
         if (event.target.classList.contains("addButton")) {
@@ -67,21 +60,9 @@ document.addEventListener("DOMContentLoaded", function() {
             if (newButtons) {
                 newButtons.removeButton.addEventListener("click", function() {
                     newButtons.addButton.parentNode.remove();
-                    calculateSums();
+                    calculateExpectedGrade();
                 });
             }
         }
-    });
-
-    // Handle the removal of initial input group
-    firstButtons.removeButton.addEventListener("click", function() {
-        firstButtons.addButton.parentNode.remove();
-        calculateSums();
-    });
-
-    // Calculate button event listener
-    document.getElementById("calculateButton").addEventListener("click", function() {
-        leftColumnSumElement.textContent = ++leftColumnSum;
-        rightColumnSumElement.textContent = ++rightColumnSum;
     });
 });

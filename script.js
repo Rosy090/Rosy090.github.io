@@ -9,13 +9,15 @@ document.addEventListener("DOMContentLoaded", function() {
         const inputGroups = document.querySelectorAll(".input-group");
         inputGroups.forEach(inputGroup => {
             const numberInputs = inputGroup.querySelectorAll(".numberInput");
-            const leftNumber = parseInt(numberInputs[0].value) || 0;
-            const rightNumber = parseInt(numberInputs[1].value) || 0;
+            const leftNumber = parseFloat(numberInputs[0].value) || 0;
+            const rightNumber = parseFloat(numberInputs[1].value) || 0;
             const product = leftNumber * rightNumber;
             expectedGrade += product;
         });
 
-        expectedGradeElement.textContent = expectedGrade;
+        expectedGrade = Math.round(expectedGrade * 100) / 100;
+
+        expectedGradeElement.textContent = expectedGrade.toFixed(2);
     }
 
     function createInputGroup() {
@@ -53,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function() {
         };
     }
 
-    // Event delegation to handle dynamically added buttons
     inputsContainer.addEventListener("click", function(event) {
         if (event.target.classList.contains("addButton")) {
             const newButtons = createInputGroup();

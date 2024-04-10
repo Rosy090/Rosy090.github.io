@@ -57,9 +57,6 @@ document.addEventListener("DOMContentLoaded", function() {
         };
     }
 
-    // Create the initial input group
-    const firstButtons = createInputGroup();
-
     // Event delegation to handle dynamically added buttons
     inputsContainer.addEventListener("click", function(event) {
         if (event.target.classList.contains("addButton")) {
@@ -71,12 +68,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
             }
         }
-    });
-
-    // Handle the removal of initial input group
-    firstButtons.removeButton.addEventListener("click", function() {
-        firstButtons.addButton.parentNode.remove();
-        calculateSums();
     });
 
     // Calculate button event listener

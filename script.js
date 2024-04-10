@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     const inputsContainer = document.getElementById("inputsContainer");
     const expectedGradeElement = document.getElementById("expectedGrade");
-    let expectedGrade = 0;
+    let expectedGrade = 0.0;
 
     function calculateExpectedGrade() {
-        expectedGrade = 0;
+        expectedGrade = 0.0;
 
         const inputGroups = document.querySelectorAll(".input-group");
         inputGroups.forEach(inputGroup => {

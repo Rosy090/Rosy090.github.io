@@ -2,10 +2,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const inputsContainer = document.getElementById("inputsContainer");
     const leftColumnSumElement = document.getElementById("leftColumnSum");
     const rightColumnSumElement = document.getElementById("rightColumnSum");
+    let leftColumnSum = 0;
+    let rightColumnSum = 0;
 
     function calculateSums() {
-        let leftColumnSum = 0;
-        let rightColumnSum = 0;
+        leftColumnSum = 0;
+        rightColumnSum = 0;
 
         const inputGroups = document.querySelectorAll(".input-group");
         inputGroups.forEach(inputGroup => {
@@ -75,5 +77,11 @@ document.addEventListener("DOMContentLoaded", function() {
     firstButtons.removeButton.addEventListener("click", function() {
         firstButtons.addButton.parentNode.remove();
         calculateSums();
+    });
+
+    // Calculate button event listener
+    document.getElementById("calculateButton").addEventListener("click", function() {
+        leftColumnSumElement.textContent = ++leftColumnSum;
+        rightColumnSumElement.textContent = ++rightColumnSum;
     });
 });

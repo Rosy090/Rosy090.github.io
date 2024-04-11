@@ -2,19 +2,22 @@ document.addEventListener("DOMContentLoaded", function() {
     const inputsContainer = document.getElementById("inputsContainer");
     const expectedGradeElement = document.getElementById("expectedGrade");
     let expectedGrade = 0.0;
+    let a = 0;
     setInterval(calculateExpectedGrade, 50);
     function calculateExpectedGrade() {
         expectedGrade = 0.0;
 
         const inputGroups = document.querySelectorAll(".input-group");
-        inputGroups.forEach(inputGroup => {
-            const numberInputs = inputGroup.querySelectorAll(".numberInput") || 0;
-            const leftNumber = parseFloat(numberInputs[0].value) || 0;
-            const rightNumber = parseFloat(numberInputs[1].value) || 0;
-            const product = leftNumber * rightNumber;
-            expectedGrade += product;
-        });
-
+        if(a!=0)
+        {
+            inputGroups.forEach(inputGroup => {
+                const numberInputs = inputGroup.querySelectorAll(".numberInput");
+                const leftNumber = parseFloat(numberInputs[0].value) || 0;
+                const rightNumber = parseFloat(numberInputs[1].value) || 0;
+                const product = leftNumber * rightNumber;
+                expectedGrade += product;
+            });
+        }
         expectedGrade = Math.round(expectedGrade * 100) / 100;
 
         expectedGradeElement.textContent = expectedGrade.toFixed(2);
@@ -58,11 +61,11 @@ document.addEventListener("DOMContentLoaded", function() {
     inputsContainer.addEventListener("click", function(event) {
         if (event.target.classList.contains("addButton")) {
             const newButtons = createInputGroup();
-            
+            a+=1;
             if (newButtons) {
                 newButtons.removeButton.addEventListener("click", function() {
                     newButtons.addButton.parentNode.remove();
-                    
+                    a-=1;
                 });
             }
         }

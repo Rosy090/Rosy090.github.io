@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const inputsContainer = document.getElementById("inputsContainer");
     const expectedGradeElement = document.getElementById("expectedGrade");
     let expectedGrade = 0.0;
-
+    setInterval(calculateExpectedGrade, 50);
     function calculateExpectedGrade() {
         expectedGrade = 0.0;
 
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
     inputsContainer.addEventListener("click", function(event) {
         if (event.target.classList.contains("addButton")) {
             const newButtons = createInputGroup();
-            calculateExpectedGrade();
+            
             if (newButtons) {
                 newButtons.removeButton.addEventListener("click", function() {
                     newButtons.addButton.parentNode.remove();

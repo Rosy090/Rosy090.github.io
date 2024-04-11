@@ -58,10 +58,11 @@ document.addEventListener("DOMContentLoaded", function() {
     inputsContainer.addEventListener("click", function(event) {
         if (event.target.classList.contains("addButton")) {
             const newButtons = createInputGroup();
+            calculateExpectedGrade();
             if (newButtons) {
                 newButtons.removeButton.addEventListener("click", function() {
                     newButtons.addButton.parentNode.remove();
-                    calculateExpectedGrade();
+                    
                 });
             }
         }

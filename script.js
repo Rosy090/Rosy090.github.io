@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const inputGroups = document.querySelectorAll(".input-group");
         inputGroups.forEach(inputGroup => {
-            const numberInputs = inputGroup.querySelectorAll(".numberInput");
+            const numberInputs = inputGroup.querySelectorAll(".numberInput") || 0;
             const leftNumber = parseFloat(numberInputs[0].value) || 0;
             const rightNumber = parseFloat(numberInputs[1].value) || 0;
             const product = leftNumber * rightNumber;

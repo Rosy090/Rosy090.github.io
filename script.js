@@ -12,10 +12,13 @@ document.addEventListener("DOMContentLoaded", function() {
         {
             inputGroups.forEach(inputGroup => {
                 const numberInputs = inputGroup.querySelectorAll(".numberInput");
-                const leftNumber = parseFloat(numberInputs[0].value) || 0;
-                const rightNumber = parseFloat(numberInputs[1].value) || 0;
-                const product = leftNumber * rightNumber;
-                expectedGrade += product;
+                if(numberInputs<=0)
+                {
+                    const leftNumber = parseFloat(numberInputs[0].value) || 0;
+                    const rightNumber = parseFloat(numberInputs[1].value) || 0;
+                    const product = leftNumber * rightNumber;
+                    expectedGrade += product;
+                }
             });
         }
         expectedGrade = Math.round(expectedGrade * 100) / 100;

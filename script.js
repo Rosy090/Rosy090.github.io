@@ -2,25 +2,19 @@ document.addEventListener("DOMContentLoaded", function() {
     const inputsContainer = document.getElementById("inputsContainer");
     const expectedGradeElement = document.getElementById("expectedGrade");
     let expectedGrade = 0.0;
-    let a = 0;
-    setInterval(calculateExpectedGrade, 50);
     function calculateExpectedGrade() {
         expectedGrade = 0.0;
 
         const inputGroups = document.querySelectorAll(".input-group");
-        if(a!=0)
-        {
-            inputGroups.forEach(inputGroup => {
-                const numberInputs = inputGroup.querySelectorAll(".numberInput");
-                if(numberInputs<=0)
-                {
-                    const leftNumber = parseFloat(numberInputs[0].value) || 0;
-                    const rightNumber = parseFloat(numberInputs[1].value) || 0;
-                    const product = leftNumber * rightNumber;
-                    expectedGrade += product;
-                }
-            });
-        }
+        inputGroups.forEach(inputGroup => {
+            const numberInputs = inputGroup.querySelectorAll(".input-group");
+            
+            const leftNumber = parseFloat(numberInputs[0].value) || 0;
+            const rightNumber = parseFloat(numberInputs[1].value) || 0;
+            const product = leftNumber * rightNumber;
+            expectedGrade += product;
+        
+        });
         expectedGrade = Math.round(expectedGrade * 100) / 100;
 
         expectedGradeElement.textContent = expectedGrade.toFixed(2);
@@ -60,15 +54,15 @@ document.addEventListener("DOMContentLoaded", function() {
             removeButton: newRemoveButton
         };
     }
-
+    createInputGroup()
     inputsContainer.addEventListener("click", function(event) {
         if (event.target.classList.contains("addButton")) {
             const newButtons = createInputGroup();
-            a+=1;
             if (newButtons) {
                 newButtons.removeButton.addEventListener("click", function() {
                     newButtons.addButton.parentNode.remove();
-                    a-=1;
+                    calculateExpectedGrade()
+                    
                 });
             }
         }
